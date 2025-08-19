@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Adicione esta linha para o deploy no GitHub Pages
+  // Adiciona o caminho base para o deploy no GitHub Pages
   base: '/thIAguinhoSolucoes/', 
   plugins: [react()],
   optimizeDeps: {
