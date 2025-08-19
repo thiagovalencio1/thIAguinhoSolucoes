@@ -131,9 +131,9 @@ function App() {
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      service_id: 'YOUR_SERVICE_ID', // <-- SUBSTITUA PELO SEU SERVICE ID DO EMAILJS
-      template_id: 'YOUR_TEMPLATE_ID', // <-- SUBSTITUA PELO SEU TEMPLATE ID DO EMAILJS
-      user_id: 'YOUR_PUBLIC_KEY', // <-- SUBSTITUA PELA SUA PUBLIC KEY (USER ID) DO EMAILJS
+      service_id: 'iathiaguinho',
+      template_id: 'template_nmo3wtu',
+      user_id: 'gOqYuX3xgmtjoXmLr', // Sua Public Key
       template_params: {
         'name': formData.get('name'),
         'email': formData.get('email'),
@@ -414,15 +414,6 @@ function App() {
             
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
               <h3 className="text-2xl font-bold text-white mb-6">Solicitar Orçamento IA</h3>
-              {/* INSTRUÇÕES PARA O FORMULÁRIO DE CONTATO:
-                1. Crie uma conta gratuita no site https://www.emailjs.com/
-                2. Conecte seu e-mail (ex: iathiaguinho@gmail.com) clicando em "Add New Service".
-                3. Crie um Template de E-mail clicando em "Email Templates" -> "Create New Template".
-                   - O template deve conter variáveis como {{name}}, {{email}}, {{phone}}, {{message}}.
-                4. Vá para a seção "Account" -> "API Keys" e copie sua "Public Key".
-                5. No código abaixo, substitua 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID' e 'YOUR_PUBLIC_KEY'
-                   pelos valores correspondentes da sua conta EmailJS.
-              */}
               <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
