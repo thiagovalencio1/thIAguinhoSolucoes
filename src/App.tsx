@@ -1,40 +1,6 @@
 import React, { useState, useRef } from 'react';
-import### **Prompt para IA de Geração de Vídeo (Diretiva de Cineasta de Hollywood)**
+import { Zap, Users, Target, Phone, Mail, MapPin, ExternalLink, CheckCircle, Settings, Lightbulb, Brain, Cpu, Network, Sparkles, Wine, Lock, Eye } from 'lucide-react';
 
-**Título do Projeto:** "A Arquitetura do Sucesso"
-
-**Diretiva Cinematográfica:**
-Criar um vídeo de 8 segundos com a pegada de um trailer de ficção científica de alto orçamento. A direção de arte é inspirada em filmes como *Minority Report* ou *Iron Man* – interfaces holográficas, precisão tecnológica e uma estética limpa e poderosa. O ritmo é rápido, a edição é precisa e a revelação final é gratificante. O mascote "Thiaguinho" não é um consultor passivo; ele é o arquiteto no controle total da operação.
-
-**Estilo Visual e Fotografia:**
-*   **Câmera:** Movimentos de câmera dinâmicos e motivados. *Dolly in*, *rack focus* (mudança de foco rápida) e um *reveal* (revelação) dramático.
-*   **Iluminação:** Alto contraste, com fontes de luz diegéticas (vindas das interfaces holográficas). Reflexos nas lentes dos óculos do mascote são essenciais para dar vida e profundidade.
-*   **Paleta de Cores:** Predominantemente escura (azuis noturnos, cinzas metálicos), com o brilho azul ciano e branco das interfaces holográficas e o vermelho do logo "IA" servindo como pontos de cor vibrantes.
-
-**Personagem (O Protagonista):**
-*   **Mascote "Thiaguinho":** Renderização 3D fotorrealista (qualidade de blockbuster). Sua performance é focada, intensa e eficiente. Ele não sorri para a câmera; ele está concentrado em seu trabalho, e sua satisfação vem da perfeição da sua criação.
-
-**Roteiro de Filmagem (Plano de Ação):**
-
-*   **[0.0s - 3.0s] - O CAOS ORGANIZADO:**
-    *   **CENA:** A cena abre em um ambiente escuro. Vemos um turbilhão caótico de dados brutos – números, gráficos, ícones de processos, e-mails – flutuando desordenadamente no ar, como um enxame digital. A câmera se move *através* dessa nuvem de caos.
-    *   **ÁUDIO:** Som de dados sendo processados rapidamente, cliques de mouse, notificações, um zumbido de sobrecarga de informação.
-    *   **VOZ (Voz over do mascote, calma e no controle, sobrepondo-se ao caos):** "Seu fluxo de trabalho é complexo..."
-
-    *   **CENA:** A câmera termina seu movimento e revela o mascote Thiaguinho de costas, com as mãos estendidas. Com um gesto rápido e elegante das mãos (como um maestro), ele "puxa" e "arrasta" os dados caóticos. As informações começam a se alinhar, formando fluxogramas perfeitos, pipelines de dados brilhantes e interfaces limpas em painéis holográficos à sua frente. É a transformação do caos em ordem absoluta.
-    *   **ÁUDIO:** O som caótico cessa abruptamente e é substituído por um som de "power-up" satisfatório e harmonioso.
-    *   **VOZ (Voz over do mascote, agora com um tom de conclusão):** "...nossa solução também."
-
-*   **[6.0s - 8.0s] - A REVELAÇÃO E A MARCA:**
-    *   **CENA:** Thiaguinho vira o rosto para a câmera, olhando por cima do ombro. Ele não sorri, mas tem um olhar de "missão cumprida". O foco da câmera muda rapidamente (rack focus) de seu rosto para o logo **thIAguinho Soluções** que se forma a partir de partículas de luz no centro da tela. O slogan aparece abaixo: **A arquitetura da sua eficiência.**
-    *   **ÁUDIO:** Um *boom* sutil e grave, o som característico de um logo de estúdio de cinema aparecendo na tela.
-
-### **Resumo da Diretiva para a IA (Briefing de Ação):**
-
-"Crie um vídeo de 8 segundos no estilo de um trailer de ficção científica. **Cena 1 (3s):** Câmera voa através de uma nuvem caótica de dados digitais. **Voz do mascote:** 'Seu fluxo de trabalho é complexo...'. **Cena 2 (3s):** A câmera revela o mascote 3D fotorrealista 'Thiaguinho' de costas, que com gestos de mão organiza o caos em interfaces holográficas perfeitas. **Voz do mascote:** '...nossa solução também.'. **Cena 3 (2s):** Ele olha por cima do ombro para a câmera com um ar de 'missão cumprida'. O logo **thIAguinho Soluções** se materializa no centro. Som de impacto final."
- { Zap, Users, Target, Phone, Mail, MapPin, ExternalLink, CheckCircle, Settings, Lightbulb, Brain, Cpu, Network, Sparkles, Wine, Lock, Eye } from 'lucide-react';
-
-// Interface para definir a estrutura de um projeto
 interface Project {
   id: string;
   title: string;
@@ -43,10 +9,9 @@ interface Project {
   icon: React.ReactNode;
   gradient: string;
   shadow: string;
-  isRestricted: boolean; // Define se o projeto tem restrições para o modo cliente
+  isRestricted: boolean;
 }
 
-// Array com os dados dos projetos para facilitar a manutenção
 const projects: Project[] = [
   {
     id: 'dashboard',
@@ -91,10 +56,9 @@ const projects: Project[] = [
     ),
     gradient: 'from-green-500 to-emerald-600',
     shadow: 'hover:shadow-green-500/20',
-    isRestricted: false, // Este projeto é totalmente funcional para o cliente
+    isRestricted: false,
   },
 ];
-
 
 function App() {
   const [modalProject, setModalProject] = useState<Project | null>(null);
@@ -111,13 +75,10 @@ function App() {
     setPasswordError('');
   };
 
-  const closeModal = () => {
-    setModalProject(null);
-  };
+  const closeModal = () => setModalProject(null);
 
   const handleViewMode = (mode: 'gestor' | 'cliente') => {
     if (!modalProject) return;
-
     if (mode === 'gestor') {
       setShowPasswordInput(true);
     } else {
@@ -129,10 +90,7 @@ function App() {
 
   const handlePasswordSubmit = () => {
     if (password === '1940') {
-      setPasswordError('');
-      if (modalProject) {
-        window.open(modalProject.liveUrl, '_blank');
-      }
+      if (modalProject) window.open(modalProject.liveUrl, '_blank');
       closeModal();
     } else {
       setPasswordError('Senha incorreta. Tente novamente.');
@@ -142,20 +100,13 @@ function App() {
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus({ sending: true, message: 'Enviando...' });
-
     const formData = new FormData(e.currentTarget);
     const data = {
       service_id: 'iathiaguinho',
       template_id: 'template_nmo3wtu',
       user_id: 'gOqYuX3xgmtjoXmLr',
-      template_params: {
-        'name': formData.get('name'),
-        'email': formData.get('email'),
-        'phone': formData.get('phone'),
-        'message': formData.get('message'),
-      }
+      template_params: Object.fromEntries(formData.entries()),
     };
-
     fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -169,10 +120,7 @@ function App() {
         throw new Error('Ocorreu um erro ao enviar a mensagem.');
       }
     })
-    .catch(error => {
-      console.error('EmailJS Error:', error);
-      setFormStatus({ sending: false, message: 'Falha ao enviar. Por favor, tente novamente ou contate-nos por outro meio.' });
-    });
+    .catch(() => setFormStatus({ sending: false, message: 'Falha ao enviar. Por favor, tente novamente.' }));
   };
 
   return (
@@ -185,173 +133,144 @@ function App() {
                 <Zap className="h-8 w-8 text-cyan-400" />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                thIAguinho Soluções
-              </span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">thIAguinho Soluções</span>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#home" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Início</a>
-              <a href="#about" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Sobre</a>
-              <a href="#services" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Serviços</a>
               <a href="#portfolio" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a>
-              <a href="#team" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Equipe</a>
               <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contato</a>
             </nav>
           </div>
         </div>
       </header>
 
-      <section id="home" className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center mb-8">
-            <div className="relative">
-              <Brain className="h-20 w-20 text-cyan-400 animate-pulse" />
-              <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-purple-400 animate-bounce" />
-            </div>
+      <main>
+        <section id="home" className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black py-20 overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+            <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Automação Inteligente</span>
-            <span className="block text-white mt-2">Sob Medida</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-300 leading-relaxed">
-            Como um alfaiate cria roupas personalizadas, desenvolvemos <span className="text-cyan-400 font-semibold"> fluxos de automação especializados </span> com Inteligência Artificial para otimizar seu tempo e revolucionar sua rotina
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-            <a href="#contact" className="group bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-cyan-500/25">
-              <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5 group-hover:animate-spin" /><span>Solicitar Orçamento</span></span>
-            </a>
-            <a href="#portfolio" className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm">
-              Ver Projetos IA
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" className="py-20 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="flex justify-center mb-8">
               <div className="relative">
-                <Sparkles className="h-16 w-16 text-purple-400" />
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-400 rounded-full animate-ping"></div>
+                <Brain className="h-20 w-20 text-cyan-400 animate-pulse" />
+                <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-purple-400 animate-bounce" />
               </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Projetos IA em Funcionamento</span>
-            </h2>
-            <p className="text-xl text-gray-300">Conheça nossas soluções inteligentes já implementadas e revolucionando rotinas</p>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Automação Inteligente</span>
+              <span className="block text-white mt-2">Sob Medida</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-300 leading-relaxed">
+              Como um alfaiate, desenvolvemos <span className="text-cyan-400 font-semibold">fluxos de automação especializados</span> com IA para otimizar seu tempo.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+              <a href="#contact" className="group bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-cyan-500/25">
+                <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5 group-hover:animate-spin" /><span>Solicitar Orçamento</span></span>
+              </a>
+              <a href="#portfolio" className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+                Ver Projetos IA
+              </a>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <div key={project.id} className={`group bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${project.shadow}`}>
-                <div className={`bg-gradient-to-r ${project.gradient} h-48 flex items-center justify-center relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="relative text-white text-center z-10">
-                    <div className="flex justify-center mb-4">{project.icon}</div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                  </div>
+        </section>
+
+        <section id="portfolio" className="py-20 bg-gray-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <Sparkles className="h-16 w-16 text-purple-400" />
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-400 rounded-full animate-ping"></div>
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-300 mb-4 leading-relaxed h-24 overflow-hidden">{project.description}</p>
-                  <div className="flex items-center space-x-4">
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Projetos IA em Funcionamento</span></h2>
+              <p className="text-xl text-gray-300">Conheça nossas soluções inteligentes já implementadas.</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project) => (
+                <div key={project.id} className={`group bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${project.shadow}`}>
+                  <div className={`bg-gradient-to-r ${project.gradient} h-48 flex items-center justify-center relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="relative text-white text-center z-10">
+                      <div className="flex justify-center mb-4">{project.icon}</div>
+                      <h3 className="text-2xl font-bold">{project.title}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-gray-300 mb-4 leading-relaxed h-24 overflow-hidden">{project.description}</p>
                     <button onClick={() => handleViewProjectClick(project)} className={`flex items-center space-x-2 bg-gradient-to-r ${project.gradient} text-white px-4 py-2 rounded-lg hover:brightness-110 transition-all duration-300 group-hover:scale-105`}>
                       <ExternalLink className="h-4 w-4" />
                       <span>Visualizar</span>
                     </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="contact" className="py-20 bg-gray-800 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/10 to-purple-900/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <Mail className="h-16 w-16 text-cyan-400" />
-                <Sparkles className="absolute -top-2 -right-2 h-6 w-6 text-purple-400 animate-bounce" />
+        <section id="contact" className="py-20 bg-gray-900 relative">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <Mail className="h-16 w-16 text-cyan-400" />
+                  <Sparkles className="absolute -top-2 -right-2 h-6 w-6 text-purple-400 animate-bounce" />
+                </div>
               </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Entre em Contato</span></h2>
+              <p className="text-xl text-gray-300">Vamos conversar sobre como a IA pode revolucionar sua rotina.</p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Entre em Contato</span>
-            </h2>
-            <p className="text-xl text-gray-300">Vamos conversar sobre como a IA pode revolucionar sua rotina</p>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-8">Informações de Contato</h3>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-                  <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
-                  <div>
-                    <p className="font-semibold text-white">Thiago Ventura (CEO)</p>
-                    <p className="text-gray-300">(17) 99763-1210</p>
+            <div className="grid lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-8">Informações de Contato</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
+                    <div>
+                      <p className="font-semibold text-white">Thiago Ventura (CEO)</p>
+                      <p className="text-gray-300">(17) 99763-1210</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center space-x-4 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-                  <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
-                  <div>
-                    <p className="font-semibold text-white">Fernando C. Fernandes Jr.</p>
-                    <p className="text-gray-300">(17) 98136-8185</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-                  <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-3 rounded-full"><Mail className="h-6 w-6" /></div>
-                  <div>
-                    <p className="font-semibold text-white">E-mail</p>
-                    <p className="text-gray-300">iathiaguinho@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-                  <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-3 rounded-full"><MapPin className="h-6 w-6" /></div>
-                  <div>
-                    <p className="font-semibold text-white">Localização</p>
-                    <p className="text-gray-300">São José do Rio Preto - SP</p>
+                  <div className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
+                    <div>
+                      <p className="font-semibold text-white">Fernando C. Fernandes Jr.</p>
+                      <p className="text-gray-300">(17) 98136-8185</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-              <h3 className="text-2xl font-bold text-white mb-6">Solicitar Orçamento IA</h3>
-              <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
-                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300" placeholder="Seu nome completo" />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
-                  <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300" placeholder="seu@email.com" />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">Telefone</label>
-                  <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300" placeholder="(00) 00000-0000" />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
-                  <textarea id="message" name="message" rows={4} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300" placeholder="Descreva sua necessidade ou projeto com IA..."></textarea>
-                </div>
-                <button type="submit" disabled={formStatus.sending} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed">
-                  <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5" /><span>{formStatus.sending ? 'Enviando...' : 'Enviar Mensagem'}</span></span>
-                </button>
-                {formStatus.message && (<p className={`text-center mt-4 text-sm ${formStatus.message.includes('sucesso') ? 'text-green-400' : 'text-red-400'}`}>{formStatus.message}</p>)}
-              </form>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
+                <h3 className="text-2xl font-bold text-white mb-6">Solicitar Orçamento IA</h3>
+                <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
+                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="Seu nome completo" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
+                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="seu@email.com" />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">Telefone</label>
+                    <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="(00) 00000-0000" />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
+                    <textarea id="message" name="message" rows={4} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="Descreva sua necessidade..."></textarea>
+                  </div>
+                  <button type="submit" disabled={formStatus.sending} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50">
+                    <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5" /><span>{formStatus.sending ? 'Enviando...' : 'Enviar Mensagem'}</span></span>
+                  </button>
+                  {formStatus.message && (<p className={`text-center mt-4 text-sm ${formStatus.message.includes('sucesso') ? 'text-green-400' : 'text-red-400'}`}>{formStatus.message}</p>)}
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <footer className="bg-black border-t border-gray-800 py-12">
-        {/* ... (rodapé sem alterações) ... */}
-      </footer>
+        </section>
+      </main>
 
       {modalProject && (
         <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -371,7 +290,7 @@ function App() {
             ) : (
               <div className="space-y-4">
                 <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Digite a senha de gestor</label>
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400" placeholder="******" />
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="******" />
                 {passwordError && <p className="text-red-400 text-sm">{passwordError}</p>}
                 <button onClick={handlePasswordSubmit} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">Acessar</button>
                 <button onClick={() => setShowPasswordInput(false)} className="text-gray-400 hover:text-white text-sm">Voltar</button>
