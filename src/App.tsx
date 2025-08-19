@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Zap, Users, Target, Phone, Mail, MapPin, ExternalLink, CheckCircle, Settings, Lightbulb, Brain, Cpu, Network, Sparkles, Wine, Lock, Eye } from 'lucide-react';
 
+// Estrutura de dados para cada projeto do portfólio
 interface Project {
   id: string;
   title: string;
@@ -9,21 +10,17 @@ interface Project {
   icon: React.ReactNode;
   gradient: string;
   shadow: string;
-  isRestricted: boolean;
+  isRestricted: boolean; // Controla se o modo cliente tem limitações
 }
 
+// Array centralizado com as informações dos projetos
 const projects: Project[] = [
   {
     id: 'dashboard',
     title: 'Dashboard IA Empresarial',
-    description: 'Dashboard completo com IA integrada para controle de operações empresariais, visualização de dados em tempo real e relatórios automatizados inteligentes.',
+    description: 'Dashboard completo com IA para controlo de operações, visualização de dados em tempo real e relatórios automatizados.',
     liveUrl: 'https://iathiaguinho-cell.github.io/DASHBOARD-3/',
-    icon: (
-      <div className="relative">
-        <Settings className="h-16 w-16 animate-spin-slow" />
-        <Cpu className="absolute top-2 left-2 h-6 w-6 animate-pulse" />
-      </div>
-    ),
+    icon: <Settings className="h-16 w-16 animate-spin-slow" />,
     gradient: 'from-cyan-500 to-purple-600',
     shadow: 'hover:shadow-cyan-500/20',
     isRestricted: true,
@@ -31,14 +28,9 @@ const projects: Project[] = [
   {
     id: 'adega',
     title: 'Adega Inteligente IA',
-    description: 'Sistema de gerenciamento de adega com IA para catalogar vinhos, sugerir harmonizações e controlar o estoque de forma inteligente e automatizada.',
+    description: 'Sistema de gestão de adega com IA para catalogar vinhos, sugerir harmonizações e controlar o stock de forma inteligente.',
     liveUrl: 'https://thiagovalencio1.github.io/ADEGA-IA/',
-    icon: (
-      <div className="relative">
-        <Wine className="h-16 w-16" />
-        <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-yellow-300 animate-pulse" />
-      </div>
-    ),
+    icon: <Wine className="h-16 w-16" />,
     gradient: 'from-red-500 to-purple-600',
     shadow: 'hover:shadow-red-500/20',
     isRestricted: true,
@@ -46,17 +38,12 @@ const projects: Project[] = [
   {
     id: 'lista',
     title: 'Lista Inteligente IA',
-    description: 'Aplicação personalizada com Inteligência Artificial para organização e controle de listas de compras com sugestões inteligentes e otimização automática.',
+    description: 'Aplicação com IA para organização de listas de compras com sugestões inteligentes e otimização automática.',
     liveUrl: 'https://iathiaguinho-cell.github.io/ListadeComprasdaHelena/',
-    icon: (
-      <div className="relative">
-        <CheckCircle className="h-16 w-16" />
-        <Brain className="absolute -top-2 -right-2 h-8 w-8 animate-bounce" />
-      </div>
-    ),
+    icon: <CheckCircle className="h-16 w-16" />,
     gradient: 'from-green-500 to-emerald-600',
     shadow: 'hover:shadow-green-500/20',
-    isRestricted: false,
+    isRestricted: false, // Este projeto é totalmente funcional para o cliente
   },
 ];
 
@@ -82,6 +69,7 @@ function App() {
     if (mode === 'gestor') {
       setShowPasswordInput(true);
     } else {
+      // Para o modo cliente, abre o link. Se for restrito, adiciona um parâmetro na URL.
       const url = modalProject.isRestricted ? `${modalProject.liveUrl}?mode=cliente` : modalProject.liveUrl;
       window.open(url, '_blank');
       closeModal();
@@ -90,6 +78,7 @@ function App() {
 
   const handlePasswordSubmit = () => {
     if (password === '1940') {
+      // Senha correta, abre o projeto como gestor (link original)
       if (modalProject) window.open(modalProject.liveUrl, '_blank');
       closeModal();
     } else {
@@ -99,7 +88,7 @@ function App() {
 
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormStatus({ sending: true, message: 'Enviando...' });
+    setFormStatus({ sending: true, message: 'A enviar...' });
     const formData = new FormData(e.currentTarget);
     const data = {
       service_id: 'iathiaguinho',
@@ -114,7 +103,7 @@ function App() {
     })
     .then(response => {
       if (response.ok) {
-        setFormStatus({ sending: false, message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.' });
+        setFormStatus({ sending: false, message: 'Mensagem enviada com sucesso! Entraremos em contacto em breve.' });
         formRef.current?.reset();
       } else {
         throw new Error('Ocorreu um erro ao enviar a mensagem.');
@@ -124,21 +113,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white font-sans">
       <header className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <Zap className="h-8 w-8 text-cyan-400" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-              </div>
+            <a href="#home" className="flex items-center space-x-3">
+              <Zap className="h-8 w-8 text-cyan-400" />
               <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">thIAguinho Soluções</span>
-            </div>
+            </a>
             <nav className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Início</a>
-              <a href="#portfolio" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfolio</a>
-              <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contato</a>
+              <a href="#portfolio" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Portfólio</a>
+              <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contacto</a>
             </nav>
           </div>
         </div>
@@ -152,24 +137,21 @@ function App() {
           </div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="flex justify-center mb-8">
-              <div className="relative">
-                <Brain className="h-20 w-20 text-cyan-400 animate-pulse" />
-                <Sparkles className="absolute -top-2 -right-2 h-8 w-8 text-purple-400 animate-bounce" />
-              </div>
+              <Brain className="h-20 w-20 text-cyan-400 animate-pulse" />
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Automação Inteligente</span>
               <span className="block text-white mt-2">Sob Medida</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-300 leading-relaxed">
-              Como um alfaiate, desenvolvemos <span className="text-cyan-400 font-semibold">fluxos de automação especializados</span> com IA para otimizar seu tempo.
+              Como um alfaiate, desenvolvemos <span className="text-cyan-400 font-semibold">fluxos de automação especializados</span> com IA para otimizar o seu tempo e processos.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-              <a href="#contact" className="group bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-cyan-500/25">
-                <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5 group-hover:animate-spin" /><span>Solicitar Orçamento</span></span>
+              <a href="#contact" className="group bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-2xl">
+                <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5" /><span>Solicitar Orçamento</span></span>
               </a>
-              <a href="#portfolio" className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm">
-                Ver Projetos IA
+              <a href="#portfolio" className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105">
+                Ver Projetos
               </a>
             </div>
           </div>
@@ -178,30 +160,23 @@ function App() {
         <section id="portfolio" className="py-20 bg-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <Sparkles className="h-16 w-16 text-purple-400" />
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-cyan-400 rounded-full animate-ping"></div>
-                </div>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Projetos IA em Funcionamento</span></h2>
-              <p className="text-xl text-gray-300">Conheça nossas soluções inteligentes já implementadas.</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Projetos em Destaque</span></h2>
+              <p className="text-xl text-gray-300">Conheça as nossas soluções inteligentes em ação.</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project) => (
-                <div key={project.id} className={`group bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${project.shadow}`}>
-                  <div className={`bg-gradient-to-r ${project.gradient} h-48 flex items-center justify-center relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-black/20"></div>
+                <div key={project.id} className={`group bg-gray-900/50 rounded-2xl border border-gray-700 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${project.shadow}`}>
+                  <div className={`bg-gradient-to-r ${project.gradient} h-48 flex items-center justify-center relative`}>
                     <div className="relative text-white text-center z-10">
                       <div className="flex justify-center mb-4">{project.icon}</div>
                       <h3 className="text-2xl font-bold">{project.title}</h3>
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-gray-300 mb-4 leading-relaxed h-24 overflow-hidden">{project.description}</p>
-                    <button onClick={() => handleViewProjectClick(project)} className={`flex items-center space-x-2 bg-gradient-to-r ${project.gradient} text-white px-4 py-2 rounded-lg hover:brightness-110 transition-all duration-300 group-hover:scale-105`}>
-                      <ExternalLink className="h-4 w-4" />
-                      <span>Visualizar</span>
+                    <p className="text-gray-300 mb-6 leading-relaxed h-24">{project.description}</p>
+                    <button onClick={() => handleViewProjectClick(project)} className={`w-full flex items-center justify-center space-x-2 bg-gradient-to-r ${project.gradient} text-white px-4 py-3 rounded-lg font-semibold hover:brightness-110 transition-all duration-300`}>
+                      <ExternalLink className="h-5 w-5" />
+                      <span>Visualizar Projeto</span>
                     </button>
                   </div>
                 </div>
@@ -210,59 +185,23 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="py-20 bg-gray-900 relative">
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" className="py-20 bg-gray-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <Mail className="h-16 w-16 text-cyan-400" />
-                  <Sparkles className="absolute -top-2 -right-2 h-6 w-6 text-purple-400 animate-bounce" />
-                </div>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Entre em Contato</span></h2>
-              <p className="text-xl text-gray-300">Vamos conversar sobre como a IA pode revolucionar sua rotina.</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6"><span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Entre em Contacto</span></h2>
+              <p className="text-xl text-gray-300">Vamos conversar sobre como a IA pode revolucionar a sua rotina.</p>
             </div>
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-8">Informações de Contato</h3>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-                    <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
-                    <div>
-                      <p className="font-semibold text-white">Thiago Ventura (CEO)</p>
-                      <p className="text-gray-300">(17) 99763-1210</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4 p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-                    <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-3 rounded-full"><Phone className="h-6 w-6" /></div>
-                    <div>
-                      <p className="font-semibold text-white">Fernando C. Fernandes Jr.</p>
-                      <p className="text-gray-300">(17) 98136-8185</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700">
-                <h3 className="text-2xl font-bold text-white mb-6">Solicitar Orçamento IA</h3>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
                 <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
-                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="Seu nome completo" />
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <input type="text" name="name" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="O seu nome completo" />
+                    <input type="email" name="email" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="O seu e-mail" />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
-                    <input type="email" id="email" name="email" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="seu@email.com" />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">Telefone</label>
-                    <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="(00) 00000-0000" />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
-                    <textarea id="message" name="message" rows={4} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="Descreva sua necessidade..."></textarea>
-                  </div>
+                  <input type="tel" name="phone" required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="O seu telefone" />
+                  <textarea name="message" rows={5} required className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="Descreva a sua necessidade..."></textarea>
                   <button type="submit" disabled={formStatus.sending} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50">
-                    <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5" /><span>{formStatus.sending ? 'Enviando...' : 'Enviar Mensagem'}</span></span>
+                    <span className="flex items-center justify-center space-x-2"><Sparkles className="h-5 w-5" /><span>{formStatus.sending ? 'A enviar...' : 'Enviar Pedido de Orçamento'}</span></span>
                   </button>
                   {formStatus.message && (<p className={`text-center mt-4 text-sm ${formStatus.message.includes('sucesso') ? 'text-green-400' : 'text-red-400'}`}>{formStatus.message}</p>)}
                 </form>
@@ -277,7 +216,7 @@ function App() {
           <div className="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
             <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
             <h3 className="text-2xl font-bold mb-2 text-white">{modalProject.title}</h3>
-            <p className="text-gray-400 mb-6">Como você gostaria de visualizar este projeto?</p>
+            <p className="text-gray-400 mb-6">Como gostaria de visualizar este projeto?</p>
             {!showPasswordInput ? (
               <div className="space-y-4">
                 <button onClick={() => handleViewMode('gestor')} className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">
@@ -289,10 +228,10 @@ function App() {
               </div>
             ) : (
               <div className="space-y-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">Digite a senha de gestor</label>
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500" placeholder="******" />
+                <label htmlFor="password" hidden>Senha de gestor</label>
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 text-center" placeholder="Digite a senha" />
                 {passwordError && <p className="text-red-400 text-sm">{passwordError}</p>}
-                <button onClick={handlePasswordSubmit} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">Acessar</button>
+                <button onClick={handlePasswordSubmit} className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105">Aceder</button>
                 <button onClick={() => setShowPasswordInput(false)} className="text-gray-400 hover:text-white text-sm">Voltar</button>
               </div>
             )}
