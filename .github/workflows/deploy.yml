@@ -28,7 +28,8 @@ jobs:
         run: npm install
 
       - name: Build project
-        # CORREÇÃO: Removida a informação extra daqui, pois já está no vite.config.ts
+        # CORREÇÃO: A informação do link do site já está no vite.config.ts
+        # Esta linha foi corrigida para não causar conflito.
         run: npm run build
       
       - name: Upload artifact
